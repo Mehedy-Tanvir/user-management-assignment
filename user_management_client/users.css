@@ -1,0 +1,52 @@
+* {
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 30px;
+}
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+.button-container {
+  display: flex;
+  justify-content: start;
+  margin-top: 32px;
+  margin-right: 40px;
+  margin-bottom: 30px;
+}
+.back-button {
+  border-radius: 5px;
+  border: 2px solid #0500ff;
+  background: #fff;
+  color: #0500ff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding-left: 44px;
+  padding-right: 44px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.delete-button {
+  border-radius: 5px;
+  border: 2px solid #0500ff;
+  background: #fff;
+  color: blue;
+  padding: 5px 7px;
+}
+.table-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+@media screen and (max-width: 725px) {
+  body {
+    padding: 0px;
+  }
+  .delete-button {
+    margin-top: 8px;
+  }
+}
