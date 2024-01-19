@@ -45,6 +45,22 @@ async function run() {
         res.status(404).send({ success: false, message: "User not found" });
       }
     });
+    app.post("/users", async (req, res) => {
+      const info = req.body;
+      const result = await usersCollection.findOne({ user_id: info.user_id });
+
+      if (result) {
+        if (result.password === info.password) {
+          res.send({ success: true, message: "Login successful" });
+        } else {
+          res
+            .status(401)
+            .send({ success: false, message: "Incorrect password" });
+        }
+      } else {
+        res.status(404).send({ success: false, message: "User not found" });
+      }
+    });
     app.post("/createUsers", async (req, res) => {
       const userInfo = req.body;
 
