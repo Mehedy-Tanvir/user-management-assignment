@@ -23,10 +23,7 @@ const client = new MongoClient(uri, {
   },
 });
 async function run() {
-  // Send a ping to confirm a successful connection
   try {
-    // Get the database and collection on which to run the operation
-
     const database = client.db(`${process.env.DB_NAME}`);
 
     const adminsCollection = database.collection("admins");
@@ -48,18 +45,33 @@ async function run() {
         res.status(404).send({ success: false, message: "User not found" });
       }
     });
+    app.post("/createUsers", async (req, res) => {
+      const userInfo = req.body;
 
-    app.get("/brands/:name", async (req, res) => {
-      const brand = req.params.name;
-      const query = { brand };
-      const result = await productsCollection.find(query).toArray();
-      res.send(result);
-    });
-    app.get("/products/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await productsCollection.findOne(query);
-      res.send(result);
+      try {
+        const existingUser = await usersCollection.findOne({
+          user_id: userInfo.user_id,
+        });
+
+        if (existingUser) {
+          res
+            .status(409)
+            .send({ success: false, message: "User already exists" });
+        } else {
+          const result = await usersCollection.insertOne({
+            user_id: userInfo.user_id,
+            password: userInfo.password,
+          });
+
+          res.send({ success: true, message: "User created successfully" });
+        }
+      } catch (error) {
+        console.error("Error creating user:", error);
+        res.status(500).send({
+          success: false,
+          message: "Internal server error. Please try again later.",
+        });
+      }
     });
 
     // db ping

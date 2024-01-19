@@ -17,10 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (response.ok) {
-        // Successful login, redirect to create_user.html
         window.location.href = "create_user.html";
       } else {
-        // Handle login error
         const data = await response.json();
         console.error("Login failed:", data.message);
       }

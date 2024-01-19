@@ -26,15 +26,23 @@
             <div class="login-container-inside">
               <h1 class="title">Create User</h1>
               <div class="inputs-container">
-                <input placeholder="User Id" type="text" class="form-control" />
                 <input
+                  placeholder="User Id"
+                  id="userId"
+                  type="text"
+                  class="form-control"
+                />
+                <input
+                  id="password"
                   placeholder="Password"
                   type="password"
                   class="form-control"
                 />
               </div>
               <div class="button-container">
-                <button class="btn btn-primary login-button">Submit</button>
+                <button class="btn btn-primary login-button submit-button">
+                  Submit
+                </button>
               </div>
             </div>
           </div>
@@ -63,5 +71,6 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <script src="./create_user.js"></script>
   </body>
 </html>
