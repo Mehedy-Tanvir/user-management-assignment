@@ -73,6 +73,10 @@ async function run() {
         });
       }
     });
+    app.get("/users", async (req, res) => {
+      const result = await usersCollection.find().toArray();
+      res.send(result);
+    });
 
     // db ping
     await client.db("admin").command({ ping: 1 });
